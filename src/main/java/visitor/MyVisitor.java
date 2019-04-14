@@ -71,4 +71,87 @@ public class MyVisitor extends Java8BaseVisitor<Node> {
         }
         return new Node(VOID);
     }
+
+    @Override
+    public Node visitExpressionName(Java8Parser.ExpressionNameContext ctx) {
+        String name = ctx.getChild(0).getText();
+        Node node = vars.get(name);
+        if (node == null) {
+            System.out.println("Переменная " + name + " не определена!");
+        }
+        return node;
+    }
+
+    @Override
+    public Node visitRelationalExpression(Java8Parser.RelationalExpressionContext ctx) {
+        Node trueNode = new Node(DOUBLE, "1");
+        Node falseNode = new Node(DOUBLE, "0");
+        if (ctx.getChildCount() > 1) {
+            if (ctx.getChild(1).getText().equals("<=")) {
+                if (super.visit(ctx.getChild(0)).lessEqual(super.visit(ctx.getChild(2)))) {
+                    return trueNode;
+                } else {
+                    return falseNode;
+                }
+            } else if (ctx.getChild(1).getText().equals(">=")) {
+                if (super.visit(ctx.getChild(0)).largerEqual(super.visit(ctx.getChild(2)))) {
+                    return trueNode;
+                } else {
+                    return falseNode;
+                }
+            } else if (ctx.getChild(1).getText().equals(">")) {
+                if (super.visit(ctx.getChild(0)).larger(super.visit(ctx.getChild(2)))) {
+                    return trueNode;
+                } else {
+                    return falseNode;
+                }
+            } else if (ctx.getChild(1).getText().equals("<")) {
+                if (super.visit(ctx.getChild(0)).less(super.visit(ctx.getChild(2)))) {
+                    return trueNode;
+                } else {
+                    return falseNode;
+                }
+            }
+        }
+        return new Node(VOID);
+    }
+
+    @Override
+    public Node visitAssignment(Java8Parser.AssignmentContext ctx) {
+        String name = ctx.getChild(0).getText();
+        String value = super.visit(ctx.getChild(2)).getText();
+        Node node = new Node(DOUBLE, value);
+        vars.put(name, node);
+        return node;
+    }
+
+    @Override
+    public Node visitWhileStatement(Java8Parser.WhileStatementContext ctx) {
+        while (Double.parseDouble(super.visit(ctx.getChild(2)).getText()) != 0) {
+            super.visit(ctx.getChild(4));
+        }
+        return new Node(VOID);
+    }
+
+    @Override
+    public Node visitEqualityExpression(Java8Parser.EqualityExpressionContext ctx) {
+        Node trueNode = new Node(DOUBLE, "1");
+        Node falseNode = new Node(DOUBLE, "0");
+        if (ctx.getChildCount() > 1) {
+            if (ctx.getChild(1).getText().equals("==")) {
+                if (super.visit(ctx.getChild(0)).equal(super.visit(ctx.getChild(2)))) {
+                    return trueNode;
+                } else {
+                    return falseNode;
+                }
+            } else if (ctx.getChild(1).getText().equals("!=")) {
+                if (super.visit(ctx.getChild(0)).notEqual(super.visit(ctx.getChild(2)))) {
+                    return trueNode;
+                } else {
+                    return falseNode;
+                }
+            }
+        }
+        return new Node(VOID);
+    }
 }

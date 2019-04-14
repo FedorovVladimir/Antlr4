@@ -24,26 +24,62 @@ public class Node {
     }
 
     public Node add(Node node) {
-        Double a = Double.parseDouble(text);
-        Double b = Double.parseDouble(node.getText());
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
         return new Node(typeLexeme, String.valueOf(a + b));
     }
 
     public Node sub(Node node) {
-        Double a = Double.parseDouble(text);
-        Double b = Double.parseDouble(node.getText());
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
         return new Node(typeLexeme, String.valueOf(a - b));
     }
 
     public Node mul(Node node) {
-        Double a = Double.parseDouble(text);
-        Double b = Double.parseDouble(node.getText());
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
         return new Node(typeLexeme, String.valueOf(a * b));
     }
 
     public Node div(Node node) {
-        Double a = Double.parseDouble(text);
-        Double b = Double.parseDouble(node.getText());
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
         return new Node(typeLexeme, String.valueOf(a / b));
+    }
+
+    public boolean lessEqual(Node node) {
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
+        return a <= b;
+    }
+
+    public boolean largerEqual(Node node) {
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
+        return a >= b;
+    }
+
+    public boolean larger(Node node) {
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
+        return a > b;
+    }
+
+    public boolean less(Node node) {
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
+        return a < b;
+    }
+
+    public boolean equal(Node node) {
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
+        return a == b;
+    }
+
+    public boolean notEqual(Node node) {
+        double a = Double.parseDouble(text);
+        double b = Double.parseDouble(node.getText());
+        return a != b;
     }
 }

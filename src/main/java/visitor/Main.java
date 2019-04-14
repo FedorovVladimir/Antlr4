@@ -11,10 +11,11 @@ public class Main {
     private static String code = "" +
             "class Main {" +
             "   public static void main(String[] args) {" +
-            "       System.out.println(3 - 1 + 4 * 2 + 10 / 2);" +
-            "       double a, b, c = 6;" +
-            "       double e = 6;" +
-            "       double f = 3 + 1;" +
+            "       double f = 1;" +
+            "       while (f <= 100) {" +
+            "           System.out.println(f);" +
+            "           f = f + 10;" +
+            "       }" +
             "   }" +
             "}";
 
