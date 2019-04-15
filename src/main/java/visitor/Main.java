@@ -11,8 +11,8 @@ public class Main {
     private static String code = "" +
             "class Main {" +
             "   public static void main(String[] args) {" +
-            "       double f = 1;" +
-            "       while (f <= 100) {" +
+            "       double f;" +
+            "       while (f != 100) {" +
             "           System.out.println(f);" +
             "           f = f + 10;" +
             "       }" +

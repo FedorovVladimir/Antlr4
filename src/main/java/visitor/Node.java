@@ -74,7 +74,7 @@ public class Node {
     public boolean equal(Node node) {
         double a = Double.parseDouble(text);
         double b = Double.parseDouble(node.getText());
-        return a == b;
+        return Math.abs(a - b) < 0.1;
     }
 
     public boolean notEqual(Node node) {

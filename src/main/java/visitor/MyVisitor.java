@@ -21,7 +21,8 @@ public class MyVisitor extends Java8BaseVisitor<Node> {
 
     @Override
     public Node visitLiteral(Java8Parser.LiteralContext ctx) {
-        return new Node(DOUBLE, ctx.getText());
+        Node node = new Node(DOUBLE, ctx.getText());
+        return node;
     }
 
     @Override
@@ -113,7 +114,7 @@ public class MyVisitor extends Java8BaseVisitor<Node> {
                 }
             }
         }
-        return new Node(VOID);
+        return super.visitRelationalExpression(ctx);
     }
 
     @Override
@@ -152,6 +153,6 @@ public class MyVisitor extends Java8BaseVisitor<Node> {
                 }
             }
         }
-        return new Node(VOID);
+        return super.visitEqualityExpression(ctx);
     }
 }
